@@ -1,20 +1,41 @@
 import { useState } from "react";
 
 const Prob = () => {
-  const [choiceNum, setChoiceNum] = useState(1);
-
-  const plusChoiceNum = () => {
-    setChoiceNum((choiceNum) => choiceNum + 1);
-  };
-
-  const minusChoiceNum = () => {
-    setChoiceNum((choiceNum) => choiceNum - 1);
-  };
-
+  // 주관식 객관식 설계
   const [isMultiple, setIsMultiple] = useState(true); // 기본 선택은 객관식
 
   const handleRadioChange = (e) => {
     setIsMultiple(e.target.value === "true");
+  };
+
+  // 객관식 보기 설계
+  const [choiceNum, setChoiceNum] = useState(2);
+
+  const maxChoices = 5;
+  const minChoices = 2;
+
+  const plusChoiceNum = () => {
+    if (choiceNum < maxChoices) {
+      setChoiceNum(choiceNum + 1);
+    }
+  };
+
+  const minusChoiceNum = () => {
+    if (choiceNum > minChoices) {
+      setChoiceNum(choiceNum - 1);
+    }
+  };
+
+  const renderChoices = () => {
+    const choices = [];
+    for (let i = 1; i <= choiceNum; i++) {
+      choices.push(
+        <div key={`choice_${i}`}>
+          <input type="text" placeholder="보기를 입력하세요" />
+        </div>
+      );
+    }
+    return choices;
   };
 
   return (
@@ -49,8 +70,15 @@ const Prob = () => {
         <br />
         {isMultiple ? (
           <div id="choice_wrap">
-            <span>{choiceNum}</span>
-            <input
+            {/* <span>{choiceNum}</span> */}
+            {renderChoices()}
+            {choiceNum < maxChoices && (
+              <button onClick={plusChoiceNum}>보기 추가</button>
+            )}
+            {choiceNum > minChoices && (
+              <button onClick={minusChoiceNum}>보기 삭제</button>
+            )}
+            {/* <input
               id="choice_1"
               type="text"
               placeholder="보기를 입력하세요"
@@ -61,7 +89,7 @@ const Prob = () => {
               }}
             >
               보기 추가
-            </button>
+            </button> */}
           </div>
         ) : (
           <div id="short_wrap">
