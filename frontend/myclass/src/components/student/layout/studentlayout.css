@@ -1,0 +1,6 @@
+#student_layout {
+    width: 1500px;
+    height: 100vh;
+    background-color: bisque;
+    display: inline-block;
+}

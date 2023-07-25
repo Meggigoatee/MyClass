@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Prob from "./prob";
+import "./problem.css";
 
 const Problem = () => {
   const [probCount, setProbCount] = useState(1);
