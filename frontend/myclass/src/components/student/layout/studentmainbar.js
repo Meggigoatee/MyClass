@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./mainbar.css";
+import "./studentmainbar.css";
 
 const Mainbar = () => {
   const [selected, setSelected] = useState(false);
@@ -20,7 +20,7 @@ const Mainbar = () => {
             }`}
             onClick={() => handleItemClick("myclassroom")}
           >
-            <Link to="/myclassroom">나의 클래스</Link>
+            <Link to="/stu/myclassroom">나의 클래스</Link>
           </li>
           <li
             id="schedule"
@@ -29,7 +29,7 @@ const Mainbar = () => {
             }`}
             onClick={() => handleItemClick("schedule")}
           >
-            <Link to="/schedule">일정표</Link>
+            <Link to="/stu/schedule">일정표</Link>
           </li>
           <li
             id="avatar"
@@ -38,7 +38,7 @@ const Mainbar = () => {
             }`}
             onClick={() => handleItemClick("avatar")}
           >
-            <Link to="avatar">아바타</Link>
+            <Link to="/stu/avatar">아바타</Link>
           </li>
         </ul>
       </div>

@@ -9,6 +9,7 @@ import Schedule from "./components/student/schedule/schedule";
 import Avatar from "./components/student/avatar/avatar";
 import Room from "./components/student/myclassroom/room";
 import Studentlayout from "./components/student/layout/studentlayout";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

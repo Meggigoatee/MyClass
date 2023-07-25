@@ -1,3 +1,5 @@
+import { Button } from "react-bootstrap";
+
 const Frontpage = () => {
   return (
     <>
@@ -8,6 +10,12 @@ const Frontpage = () => {
       <div>
         <button>로그인</button>
         <button>회원가입</button>
+        <Button type="button" className="btn-lg btn-warning">
+          로그인
+        </Button>
+        <Button type="button" className="btn-lg btn-warning">
+          회원가입
+        </Button>
       </div>
     </>
   );

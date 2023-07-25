@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Mainbar from "./mainbar";
+import Mainbar from "./studentmainbar";
 import "./studentlayout.css";
 
 const Studentlayout = () => {
