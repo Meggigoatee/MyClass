@@ -26,7 +26,7 @@ public class Problems {
 	private int t_id;
 	
 	// 문제 리스트
-	private JSONObject problem_list;
+	private String problem_list;
 	
 	// 교부 날짜
 	private Date distribution;

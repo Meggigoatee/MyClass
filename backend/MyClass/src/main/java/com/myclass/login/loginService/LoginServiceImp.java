@@ -1,10 +1,12 @@
 package com.myclass.login.loginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.myclass.entity.Users;
 import com.myclass.repository.UsersRepository;
 
+@Service
 public class LoginServiceImp implements LoginService{
 	
 	@Autowired

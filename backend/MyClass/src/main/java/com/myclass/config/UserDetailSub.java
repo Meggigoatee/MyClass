@@ -1,6 +1,7 @@
 package com.myclass.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,8 +29,13 @@ public class UserDetailSub implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Users user = usersRepository.findByEmail(username);
+		if(user==null) {
+			// 없으면 예외 처리
+			throw new UsernameNotFoundException(username + "존재하지 않음");
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+            
 }

@@ -20,8 +20,8 @@ public class LoginController {
 	
 	// 초기화면
 	@GetMapping("/frontpage")
-	public String frontpage() {
-		return "front page";
+	public void frontpage() {
+//		return "frontpage";
 	}
 	
 	// 회원가입 선택
