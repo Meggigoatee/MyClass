@@ -1,5 +1,6 @@
 package com.myclass.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	@Autowired
+	private UserDetailSub userDetailSub;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -38,21 +42,11 @@ public class SecurityConfig {
 //		.logout((logout) -> logout.permitAll()
 //			.logoutSuccessUrl("/"));
 //			);
+		http.userDetailsService(userDetailSub);
 
 	return http.build();
 		
 		
 	}
 	
-	@Bean
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-			 User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
-
-		return new InMemoryUserDetailsManager(user);
-	}
 }

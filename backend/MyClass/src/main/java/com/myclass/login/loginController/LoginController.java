@@ -45,7 +45,7 @@ public class LoginController {
 	
 	//로그인 요청
 	@PostMapping("/loginreq")
-	public String loginreq(Users user) {
+	public String loginreq(Users user, BindingResult result) {
 		
 		return "login success";
 		

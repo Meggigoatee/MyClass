@@ -12,17 +12,11 @@ import lombok.Data;
 @Data
 public class CustomUser extends User{
 	
-	private Users user;
-	
-	public CustomUser(Users user, Collection<? extends GrantedAuthority> authorities) {
-        super(user.getUsername(), user.getPassword(), authorities);
-        this.user = user;
-    }
+	private Users users;
 
-	
-	
-	
-	
-	
+	public CustomUser(Users users) {
+		super(users.getUsername(), users.getPassword(), AuthorityUtils.createAuthorityList("Role_USER"));
+		this.users = users;
+	}
 
 }
