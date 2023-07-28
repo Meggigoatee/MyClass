@@ -12,10 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+	@Autowired
+	private CorsConfig corsConfig;
 	
 	@Autowired
 	private UserDetailSub userDetailSub;
@@ -28,17 +34,19 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterchain(HttpSecurity http) throws Exception {
-		http
-		.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/", "/home", "/login").permitAll()
+		http.csrf().disable();
+//		http.csrf().csrfTokenRepository(csrfTokenRepository());
+        http.addFilter(corsConfig.corsFilter()); // Add the CORS filter before the CsrfFilter
+		http.authorizeHttpRequests((requests) -> requests
+			.requestMatchers("/", "/home", "/login", "/register").permitAll()
 			.anyRequest().authenticated()
 //			.anyRequest().permitAll()
-		)
-		.formLogin((form) -> form
-			.loginPage("/loginform")
-			.defaultSuccessUrl("/loginreq")
-			.permitAll()
 		);
+//		.formLogin((form) -> form
+//			.loginPage("/loginform")
+//			.defaultSuccessUrl("/loginreq")
+//			.permitAll()
+//		);
 //		.logout((logout) -> logout.permitAll()
 //			.logoutSuccessUrl("/"));
 //			);
@@ -48,5 +56,13 @@ public class SecurityConfig {
 		
 		
 	}
+	
+	@Bean
+    public CsrfTokenRepository csrfTokenRepository() {
+        CookieCsrfTokenRepository repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        // Customize the CSRF token cookie if needed
+        // repository.setCookieName("XSRF-TOKEN");
+        return repository;
+    }
 	
 }
