@@ -5,9 +5,9 @@ import "./studentlayout.css";
 const Studentlayout = () => {
   return (
     <>
-      <div id="student_layout" style={{ position: "relative" }}>
-        <Mainbar />
-        <Outlet />
+      <div className="container text-center">
+          <Mainbar />
+          <Outlet />
       </div>
     </>
   );
