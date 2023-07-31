@@ -15,7 +15,7 @@ public class CustomUser extends User{
 	private Users users;
 
 	public CustomUser(Users users) {
-		super(users.getUsername(), users.getPassword(), AuthorityUtils.createAuthorityList("Role_USER"));
+		super(users.getName(), users.getPassword(), AuthorityUtils.createAuthorityList("Role_USER"));
 		this.users = users;
 	}
 

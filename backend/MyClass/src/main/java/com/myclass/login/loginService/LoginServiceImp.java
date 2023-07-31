@@ -21,9 +21,12 @@ public class LoginServiceImp implements LoginService{
 
 	// 회원가입 요청
 	@Override
-	public void register(Users user) {
+	public String register(Users user) {
+		if(usersRepository.findByEmail(user.getEmail()) != null) {
+			return "email_duplicated";
+		}
 		usersRepository.save(user);
-		
+		return "ok";
 	}
 
 }

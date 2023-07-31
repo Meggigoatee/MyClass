@@ -34,22 +34,20 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterchain(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-//		http.csrf().csrfTokenRepository(csrfTokenRepository());
-        http.addFilter(corsConfig.corsFilter()); // Add the CORS filter before the CsrfFilter
+        http.csrf().disable();
+        http.addFilter(corsConfig.corsFilter());
 		http.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/", "/home", "/login", "/register").permitAll()
+			.requestMatchers("/", "/loginform", "/login", "/loginreq", "/register", "/loginsort").permitAll()
 			.anyRequest().authenticated()
-//			.anyRequest().permitAll()
-		);
-//		.formLogin((form) -> form
-//			.loginPage("/loginform")
-//			.defaultSuccessUrl("/loginreq")
+		)
+		.formLogin((form) -> form
+			.loginPage("/loginform")
+			.defaultSuccessUrl("/loginsort")
+//			.loginProcessingUrl(null)
 //			.permitAll()
-//		);
-//		.logout((logout) -> logout.permitAll()
-//			.logoutSuccessUrl("/"));
-//			);
+		)
+		.logout((logout) -> logout.permitAll()
+			.logoutSuccessUrl("/"));
 		http.userDetailsService(userDetailSub);
 
 	return http.build();

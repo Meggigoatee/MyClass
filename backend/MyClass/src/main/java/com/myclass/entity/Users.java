@@ -59,6 +59,9 @@ public class Users {
 	
 	// role
 	private String role;
+	
+	// 비밀번호 검사용
+	private String passwordchk;
 
 
 }

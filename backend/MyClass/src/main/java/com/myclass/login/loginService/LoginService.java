@@ -11,7 +11,7 @@ public interface LoginService {
 //	public void loginreq(Users user);
 	
 	// 회원가입 요청
-	public void register(Users user);
+	public String register(Users user);
 	
 
 }

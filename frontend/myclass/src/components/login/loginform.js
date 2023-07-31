@@ -14,30 +14,12 @@ const Loginform = () => {
     loginData.append("email", email);
     loginData.append("password", password);
 
-    try {
-      const response = await axios.post(
-        "http:/localhost:8080/login",
-        loginData
-      );
+    const response = await axios.post(
+      "http://localhost:8080/loginreq",
+      loginData
+    );
 
-      // HTTP 상태 코드가 200번대면 로그인 성공
-      if (response.status >= 200 && response.status < 300) {
-        // 로그인 성공
-        // 다음 동작 수행 (예: 페이지 이동 등)
-        setInput({ email: "", password: "" });
-        if (response.data.isteacher === "false") {
-          window.location.href = "https:/localhost:3000/stu";
-        } else if (response.data.isteacher === "true") {
-          window.location.href = "https:/localhost:3000/tea";
-        }
-      } else {
-        // 로그인 실패 - 서버로부터 받은 오류 메시지를 상태에 저장
-        setError(response.data.errors || {});
-      }
-    } catch (error) {
-      // 네트워크 오류 등 예외 처리
-      console.error("Error occurred:", error);
-    }
+    console.log(response);
   };
 
   return (
