@@ -11,6 +11,7 @@ import Room from "./components/student/myclassroom/room";
 import Studentlayout from "./components/student/layout/studentlayout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Joinform from "./components/login/joinform";
+import PrivateRoute from "./functions/privateRoute";
 
 function App() {
   return (
@@ -20,14 +21,14 @@ function App() {
         <Route path="loginform" element={<Loginform />} />
         <Route path="joinselect" element={<Joinselect />} />
         <Route path="joinform" element={<Joinform />} />
-        <Route path="stu" element={<Studentlayout />}>
+        <PrivateRoute path="stu" element={<Studentlayout />}>
           <Route path="problem" element={<Problem />} />
           <Route path="myclassroom" element={<Myclassroom />}>
             <Route path="room/:roomNum" element={<Room />} />
           </Route>
           <Route path="schedule" element={<Schedule />} />
           <Route path="avatar" element={<Avatar />} />
-        </Route>
+        </PrivateRoute>
       </Routes>
     </div>
   );

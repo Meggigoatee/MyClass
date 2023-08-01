@@ -1,10 +1,14 @@
 package com.myclass.config;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +16,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -37,22 +49,57 @@ public class SecurityConfig {
         http.csrf().disable();
         http.addFilter(corsConfig.corsFilter());
 		http.authorizeHttpRequests((requests) -> requests
-			.requestMatchers("/", "/loginform", "/login", "/loginreq", "/register", "/loginsort").permitAll()
+			.requestMatchers("/", "/loginform", "/test", "/loginreq", "/register", "/loginsort").permitAll()
 			.anyRequest().authenticated()
 		)
 		.formLogin((form) -> form
-			.loginPage("/loginform")
-			.defaultSuccessUrl("/loginsort")
-//			.loginProcessingUrl(null)
-//			.permitAll()
+//			.loginPage("/loginform")
+			.usernameParameter("email")
+            .passwordParameter("password")
+//			.defaultSuccessUrl("/loginsort")
+            .successHandler(new AuthenticationSuccessHandler() {
+				
+				@Override
+				public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+						Authentication authentication) throws IOException, ServletException {
+					// 쿠키를 생성합니다.
+			        Cookie cookie = new Cookie("Cookieeee", request.getSession().getId());
+			        cookie.setMaxAge(60 * 60);  // 쿠키의 유효시간을 1시간으로 설정합니다.
+			        cookie.setSecure(true);  // HTTPS를 이용하여 쿠키를 전송하도록 설정합니다.
+			        cookie.setHttpOnly(false);  // JavaScript를 이용한 쿠키 접근을 방지합니다.
+			        cookie.setPath("/");  // 쿠키가 사용되는 경로를 설정합니다.
+
+			        // 쿠키를 HTTP 응답에 담아서 보냅니다.
+			        response.addCookie(cookie);
+				}
+			})
+            .failureHandler(new AuthenticationFailureHandler() {
+				
+				@Override
+				public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+						AuthenticationException exception) throws IOException, ServletException {
+					response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			        response.setContentType("application/json;charset=UTF-8");
+			        response.getWriter().write("{\"message\": \"login_fail\"}");
+				}
+			})
 		)
-		.logout((logout) -> logout.permitAll()
-			.logoutSuccessUrl("/"));
+		.logout((logout) -> logout.logoutSuccessHandler(new LogoutSuccessHandler() {
+			
+			@Override
+			public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+					throws IOException, ServletException {
+				// 쿠키의 max-age를 0으로 설정하여 쿠키를 삭제합니다.
+		        Cookie cookie = new Cookie("Cookieeee", "");
+		        cookie.setMaxAge(0);
+		        cookie.setPath("/");
+		        response.addCookie(cookie);
+			}
+		})
+		  .permitAll());
 		http.userDetailsService(userDetailSub);
 
 	return http.build();
-		
-		
 	}
 	
 	@Bean

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -30,9 +31,16 @@ public class LoginController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	// 테스트용
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
+	
 	// 로그인 후 처리
 	@GetMapping("/loginsort")
-	public String loginsort(Authentication authentication) {
+	public String loginsort() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Users user = (Users) authentication.getPrincipal();
 		boolean isTeacher = user.isTeacher();
 		if(isTeacher) {
@@ -69,6 +77,7 @@ public class LoginController {
 		}else {
 			System.out.println(data);
 			System.out.println(user.getPassword());
+			System.out.println(user.isTeacher());
 			return data;
 		}
 	}
