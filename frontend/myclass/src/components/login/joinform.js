@@ -9,21 +9,20 @@ const Joinform = () => {
     passwordchk: "",
     name: "",
     nick: "",
-    isteacher: "",
+    isteacher: null,
   });
 
   const { email, password, passwordchk, name, nick, isteacher } = input;
 
   // radio 버튼 이벤트
-  const [ischecked, setIschecked] = useState("");
-
-  // const isChecked = e.target.value === "true"; // value를 true 또는 false로 설정했기 때문에 boolean으로 변환
-  // setIschecked(isChecked);
-  // setInput({ ...input, isteacher: ischecked }); // 업데이트된 상태를 setInput으로 설정
-  // console.log("input:" + ischecked); // 업데이트된 값 출력
-  // console.log("isteacher:" + isteacher);
   const handleRadioChange = (e) => {
-    setInput({ ...input, isteacher: e.target.value });
+    console.log(e.target.value);  // radio 버튼의 최신 값 출력
+    let teacherval = e.target.value;
+    if(teacherval === "teacher"){
+      setInput({ ...input, isteacher: true });
+    }else{
+      setInput({ ...input, isteacher: false });
+    }
   };
 
   // input 이벤트 핸들러
@@ -49,8 +48,6 @@ const Joinform = () => {
 
   // 회원가입 이벤트
   const JoinSubmit = async (e) => {
-    console.log("실시");
-    console.log(passwordchk);
     e.preventDefault();
     const user = new FormData();
     user.append("email", email);
@@ -62,10 +59,7 @@ const Joinform = () => {
     console.log(user.isteacher);
 
     const response = await axios.post(`http://localhost:8080/register`, user);
-
-    // console.log(response);
     let errorList = response.data;
-    // console.log(errorList.length);
     if (JSON.stringify(errorList) !== "{}") {
       setError(errorList);
     } else {
@@ -74,10 +68,10 @@ const Joinform = () => {
       window.location.href = "/loginform";
     }
   };
+
   // useEffect(() => {
-  //   handleRadioChange();
   //   setInput();
-  // }, [input]);
+  // }, []);
 
   return (
     <>

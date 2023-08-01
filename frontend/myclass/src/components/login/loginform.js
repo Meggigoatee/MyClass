@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from 'react-redux';
 import "./loginform.css";
 import Cookies from "js-cookie";
 
 const Loginform = () => {
   const [input, setInput] = useState({ email: "", password: "" });
   const { email, password } = input;
+  // const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   // input 이벤트 핸들러
   const handleValueChange = (e) => {
@@ -32,6 +34,7 @@ const Loginform = () => {
       //쿠키를 확인하는 코드
       const cookieValue = Cookies.get("Cookieeee");
       if (cookieValue) {
+        // dispatch(login({ username: 'example' }));
         window.location.href = "/stu";
       } else {
         window.alert("로그인 실패");

@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import Frontpage from "./components/login/frontpage";
 import "./App.css";
 import Loginform from "./components/login/loginform";
@@ -15,22 +17,24 @@ import PrivateRoute from "./functions/privateRoute";
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App vh-100">
       <Routes>
         <Route path="frontpage" element={<Frontpage />} />
         <Route path="loginform" element={<Loginform />} />
         <Route path="joinselect" element={<Joinselect />} />
         <Route path="joinform" element={<Joinform />} />
-        <PrivateRoute path="stu" element={<Studentlayout />}>
+        <Route path="stu" element={<Studentlayout />}>
           <Route path="problem" element={<Problem />} />
           <Route path="myclassroom" element={<Myclassroom />}>
             <Route path="room/:roomNum" element={<Room />} />
           </Route>
           <Route path="schedule" element={<Schedule />} />
           <Route path="avatar" element={<Avatar />} />
-        </PrivateRoute>
+        </Route>
       </Routes>
     </div>
+    </Provider>
   );
 }
 

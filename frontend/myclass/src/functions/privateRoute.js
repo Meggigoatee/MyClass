@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import isLogin from "./isLogin";
 import Frontpage from "../components/login/frontpage";
 
-function PrivateRoute({ component: Component, ...rest }) {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
