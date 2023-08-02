@@ -1,109 +1,137 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./studentmainbar.css";
+import menulogo from "./../../../img/svg/icons8-menu-64.svg";
+import { useState } from "react";
 
 const Mainbar = () => {
-  const [selected, setSelected] = useState(false);
+  const [isToggle, setIsToggle] = useState(false);
 
-  const handleItemClick = (itemId) => {
-    setSelected(itemId);
+  const showDropdown = () => {
+    setIsToggle(!isToggle);
   };
-  {/* <div id="main_bar">
-    <ul>
-      <li
-        id="myclassroom"
-        className={`mainbar_button ${
-          selected === "myclassroom" ? "selected" : ""
-        }`}
-        onClick={() => handleItemClick("myclassroom")}
-      >
-        <Link to="/stu/myclassroom">나의 클래스</Link>
-      </li>
-      <li
-        id="schedule"
-        className={`mainbar_button ${
-          selected === "schedule" ? "selected" : ""
-        }`}
-        onClick={() => handleItemClick("schedule")}
-      >
-        <Link to="/stu/schedule">일정표</Link>
-      </li>
-      <li
-        id="avatar"
-        className={`mainbar_button ${
-          selected === "avatar" ? "selected" : ""
-        }`}
-        onClick={() => handleItemClick("avatar")}
-      >
-        <Link to="/stu/avatar">아바타</Link>
-      </li>
-    </ul>
-  </div> */}
 
   return (
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-secondary" style={{width:280}}>
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-          {/* <use xlink:href="#bootstrap"></use> */}
-          </svg>
-        <span class="fs-4">My Class</span>
-      </a>
-      <hr/>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
-            <svg class="bi me-2" width="16" height="16">
-              {/* <use xlink:href="#home"></use> */}
-              </svg>
-            Home
-          </a>
+    <div className="h-100 d-flex flex-column justify-content-between">
+      <div className="text-center">
+        <NavLink
+          to="/stu"
+          className="fw-bold fst-italic my-2 fs-1 text-decoration-none text-warning"
+        >
+          My Class
+        </NavLink>
+      </div>
+      <hr />
+      <ul className="nav flex-column nav-pills nav-fill fs-4">
+        <li className="nav-item">
+          <NavLink
+            to="/stu/myclassroom"
+            className="nav-link py-2 rounded-0 text-white"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+            })}
+          >
+            나의 클래스
+          </NavLink>
         </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              {/* <use xlink:href="#speedometer2"></use> */}
-              </svg>
-            Dashboard
-          </a>
+        <li className="nav-item">
+          <NavLink
+            to="/stu/schedule"
+            className="nav-link py-2 rounded-0 text-white"
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+            })}
+          >
+            일정표
+          </NavLink>
         </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              {/* <use xlink:href="#table"></use> */}
-              </svg>
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              {/* <use xlink:href="#grid"></use> */}
-              </svg>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              {/* <use xlink:href="#people-circle"></use> */}
-              </svg>
-            Customers
-          </a>
+        <li className="nav-item">
+          <NavLink
+            to="/stu/avatar"
+            className="nav-link py-2 rounded-0 text-white "
+            style={({ isActive }) => ({
+              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+            })}
+          >
+            아바타
+          </NavLink>
         </li>
       </ul>
-      <hr/>
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"/>
-          <strong>mdo</strong>
-        </a>
-        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><hr class="dropdown-divider"/></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
+      <hr />
+      <div className="mt-auto mb-3">
+        {/* <div>
+          <ul className="nav">
+            <li class="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Separated link
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div> */}
+        {isToggle ? (
+          <ul className="nav flex-column nav-pills nav-fill fs-5">
+            <li className="nav-item">
+              <NavLink
+                to="/stu/my"
+                className="nav-link py-2 rounded-0 text-white"
+              >
+                내 정보 수정
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/stu/config"
+                className="nav-link py-2 rounded-0 text-white"
+              >
+                설정
+              </NavLink>
+            </li>
+            <hr />
+            <li className="nav-item">
+              <NavLink
+                to="/logout"
+                className="nav-link py-2 rounded-0 text-white "
+              >
+                로그아웃
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
+          ""
+        )}
+        <div className="justify-content-center text-center">
+          <img src={menulogo} alt="menu_icon" onClick={showDropdown}></img>
+        </div>
       </div>
     </div>
   );

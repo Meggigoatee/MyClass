@@ -1,35 +1,4 @@
-#main_bar {
-    z-index: 999;
-    margin: 0px;
-    width: 240px;
-    height: 100vh;
-    background-color: gray;
-    text-align: center;
-    padding: 0px;
-}
-
-.selected {
-    background-color: #c2d438;
-    text-decoration: grey;
-}
-
-ul {
-    padding: 0px;
-}
-
-ul li {
-    list-style: none;
-    background-color: gray;
-    font-size: 25px;
-    padding: 20px 0;
-}
-
 a {
     text-decoration: none;
-    color: azure;
-}
-
-.selected a {
-    text-decoration: none;
-    color: gray;
+    color: white;
 }

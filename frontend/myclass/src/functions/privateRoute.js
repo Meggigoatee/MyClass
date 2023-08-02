@@ -10,11 +10,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         isLogin() ? (
           <Component {...props} />
         ) : (
-          <Route path="frontpage" element={<Frontpage />} />
+          <Route path="/frontpage" element={<Frontpage />} />
         )
       }
     />
   );
-}
+};
 
 export default PrivateRoute;

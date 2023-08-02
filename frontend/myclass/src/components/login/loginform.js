@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import "./loginform.css";
 import Cookies from "js-cookie";
 
@@ -53,31 +53,37 @@ const Loginform = () => {
         id="loginform"
         className="container-md h-100 text-center justify-content-center d-flex align-items-center bg-light"
       >
-        <div className="m-auto p-5 border border-warning rounded-2 bg-white">
+        <div className="m-auto p-5 border border-warning rounded-2 bg-white col-6">
           <h3>로그인</h3>
           <form>
-            <div className="align-self-center">
-              <p>이메일</p>
-              <input
-                id="email"
-                name="email"
-                type="text"
-                placeholder="이메일을 입력하세요"
-                value={email}
-                onChange={handleValueChange}
-              />
+            <div className="align-self-center row">
+              <label htmlFor="email" className="text-center">
+                이메일
+                <input
+                  id="email"
+                  className="form-control"
+                  name="email"
+                  type="text"
+                  placeholder="이메일을 입력하세요"
+                  value={email}
+                  onChange={handleValueChange}
+                />
+              </label>
             </div>
-            <div className="align-self-center">
-              <p>비밀번호</p>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="비밀번호를 입력하세요"
-                value={password}
-                onChange={handleValueChange}
-              />
-              <p>유효성 검사</p>
+            <br />
+            <div className="align-self-center row">
+              <label htmlFor="password" className="text-center">
+                비밀번호
+                <input
+                  id="password"
+                  className="form-control"
+                  name="password"
+                  type="password"
+                  placeholder="비밀번호를 입력하세요"
+                  value={password}
+                  onChange={handleValueChange}
+                />
+              </label>
             </div>
             <button
               className="btn btn-outline-success"

@@ -16,11 +16,11 @@ const Joinform = () => {
 
   // radio 버튼 이벤트
   const handleRadioChange = (e) => {
-    console.log(e.target.value);  // radio 버튼의 최신 값 출력
+    console.log(e.target.value); // radio 버튼의 최신 값 출력
     let teacherval = e.target.value;
-    if(teacherval === "teacher"){
+    if (teacherval === "teacher") {
       setInput({ ...input, isteacher: true });
-    }else{
+    } else {
       setInput({ ...input, isteacher: false });
     }
   };
@@ -56,7 +56,7 @@ const Joinform = () => {
     user.append("nick", nick);
     user.append("isteacher", isteacher);
     user.append("passwordchk", passwordchk);
-    console.log(user.isteacher);
+    console.log(isteacher);
 
     const response = await axios.post(`http://localhost:8080/register`, user);
     let errorList = response.data;
