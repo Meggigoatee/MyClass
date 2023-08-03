@@ -7,26 +7,6 @@ const Frontpage = () => {
         <div className="border border-warning rounded-2 bg-white p-5">
           <h3 className="m-3">우리들의 교실에 오신걸 환영합니다</h3>
           <h1>MyClass</h1>
-          {/* <nav className="nav justify-content-center">
-            <ul className="nav nav-justified ">
-              <li className="nav-item m-3 border border-warning bg-white border rounded-2 col-3">
-                <a
-                  href="/loginform"
-                  className="text-decoration-none text-reset"
-                >
-                  로그인
-                </a>
-              </li>
-              <li className="nav-item m-3 border border-warning bg-white border rounded-2">
-                <a
-                  href="/joinselect"
-                  className="text-decoration-none text-reset"
-                >
-                  회원가입
-                </a>
-              </li>
-            </ul>
-          </nav> */}
           <button
             className="btn btn-outline-success btn-lg m-3"
             onClick={() => {

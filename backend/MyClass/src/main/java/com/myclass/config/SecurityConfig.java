@@ -63,9 +63,9 @@ public class SecurityConfig {
 				public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 						Authentication authentication) throws IOException, ServletException {
 					// 쿠키를 생성합니다.
-			        Cookie cookie = new Cookie("Cookieeee", request.getSession().getId());
+			        Cookie cookie = new Cookie("JSESSIONID", request.getSession().getId());
 			        cookie.setMaxAge(60 * 60);  // 쿠키의 유효시간을 1시간으로 설정합니다.
-			        cookie.setSecure(true);  // HTTPS를 이용하여 쿠키를 전송하도록 설정합니다.
+			        cookie.setSecure(false);  // HTTPS를 이용하여 쿠키를 전송하도록 설정합니다.
 			        cookie.setHttpOnly(false);  // JavaScript를 이용한 쿠키 접근을 방지합니다.
 			        cookie.setPath("/");  // 쿠키가 사용되는 경로를 설정합니다.
 
@@ -90,10 +90,12 @@ public class SecurityConfig {
 			public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 					throws IOException, ServletException {
 				// 쿠키의 max-age를 0으로 설정하여 쿠키를 삭제합니다.
-		        Cookie cookie = new Cookie("Cookieeee", "");
-		        cookie.setMaxAge(0);
-		        cookie.setPath("/");
-		        response.addCookie(cookie);
+				Cookie cookie = new Cookie("JSESSIONID", request.getSession().getId());
+				cookie.setMaxAge(0);
+				cookie.setSecure(false);  // HTTPS를 이용하여 쿠키를 전송하도록 설정합니다.
+				cookie.setHttpOnly(false);  // JavaScript를 이용한 쿠키 접근을 방지합니다.
+				cookie.setPath("/");  // 쿠키가 사용되는 경로를 설정합니다.
+				response.addCookie(cookie);
 			}
 		})
 		  .permitAll());

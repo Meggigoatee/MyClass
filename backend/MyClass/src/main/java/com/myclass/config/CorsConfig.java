@@ -21,7 +21,7 @@ public class CorsConfig {
 		// value "*" since that cannot be set on the "Access-Control-Allow-Origin"
 		// response header. To allow credentials to a set of origins, list them
 		// explicitly or consider using "allowedOriginPatterns" instead.
-		config.addAllowedOrigin("http://localhost:3000"); //모든 요청 ip에 응답을 허용한다.
+//		config.addAllowedOrigin("http://localhost:3000"); //모든 요청 ip에 응답을 허용한다.
 		config.addAllowedOriginPattern("*"); // 포트번호 응답 다름 허용
 		config.addAllowedHeader("*"); // 모든 요청 header에 응답을 허용한다.
 		config.addAllowedMethod("*"); // 모든 post, get, put, delete, patch요청에 응답을 허용한다.

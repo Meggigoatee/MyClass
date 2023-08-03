@@ -25,16 +25,14 @@ const Loginform = () => {
     loginData.append("password", password);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/login",
-        loginData,
-        { withCredentials: true }
-      );
-      console.log(response);
+      await axios.post("http://localhost:8080/login", loginData, {
+        withCredentials: true,
+      });
       //쿠키를 확인하는 코드
-      const cookieValue = Cookies.get("Cookieeee");
+      const cookieValue = Cookies.get("JSESSIONID");
       if (cookieValue) {
         // dispatch(login({ username: 'example' }));
+        localStorage.setItem("email", email);
         window.location.href = "/stu";
       } else {
         window.alert("로그인 실패");

@@ -1,9 +1,11 @@
 package com.myclass.entity;
 
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
+//@TypeDef(name = "json", typeClass = JsonStringType.class)
 public class Problems {
 	
 	// 믄제지 아이디
@@ -24,9 +27,10 @@ public class Problems {
 	
 	// 교사 아이디
 	private int t_id;
-	
+		
 	// 문제 리스트
-	private String problem_list;
+	@Convert(converter = JsonConverter.class)
+    private Map<String, Object> problem_list;
 	
 	// 교부 날짜
 	private Date distribution;

@@ -2,12 +2,26 @@ import { NavLink } from "react-router-dom";
 import "./studentmainbar.css";
 import menulogo from "./../../../img/svg/icons8-menu-64.svg";
 import { useState } from "react";
+import axios from "axios";
 
 const Mainbar = () => {
   const [isToggle, setIsToggle] = useState(false);
 
   const showDropdown = () => {
     setIsToggle(!isToggle);
+  };
+
+  const [hover, setHover] = useState(false);
+
+  const hoverStyles = hover
+    ? { backgroundColor: "#b02826" }
+    : { backgroundColor: "#6c757d" };
+
+  const Logout = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:8080/logout");
+    localStorage.setItem("email", null);
+    window.location.href = "/frontpage";
   };
 
   return (
@@ -58,46 +72,6 @@ const Mainbar = () => {
       </ul>
       <hr />
       <div className="mt-auto mb-3">
-        {/* <div>
-          <ul className="nav">
-            <li class="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Separated link
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div> */}
         {isToggle ? (
           <ul className="nav flex-column nav-pills nav-fill fs-5">
             <li className="nav-item">
@@ -118,12 +92,15 @@ const Mainbar = () => {
             </li>
             <hr />
             <li className="nav-item">
-              <NavLink
-                to="/logout"
-                className="nav-link py-2 rounded-0 text-white "
+              <button
+                className="nav-link py-2 rounded-0 text-white navlink-style"
+                style={hoverStyles}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                onClick={Logout}
               >
                 로그아웃
-              </NavLink>
+              </button>
             </li>
           </ul>
         ) : (
