@@ -20,23 +20,26 @@ public class Problems {
 	// 믄제지 아이디
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int problem_id;
+	private int problemId;
 	
 	// 문제지 이름
-	private String problem_name;
+	private String problemName;
 	
 	// 교사 아이디
-	private int t_id;
+	private int teacherId;
+	
+	// 클래스 id
+	private int classId;
 		
 	// 문제 리스트
 	@Convert(converter = JsonConverter.class)
-    private Map<String, Object> problem_list;
+    private Map<String, Object> problemList;
 	
 	// 교부 날짜
 	private Date distribution;
 	
 	// 마감 날짜
-	private Date end_date;
+	private Date endDate;
 	
 	// 즉시 체점 여부
 	private boolean isScoring;

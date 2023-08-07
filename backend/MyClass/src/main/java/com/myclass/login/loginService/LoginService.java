@@ -13,5 +13,8 @@ public interface LoginService {
 	// 회원가입 요청
 	public String register(Users user);
 	
+	// isTeacher 반환
+	public char isTeacher(String email);
+	
 
 }

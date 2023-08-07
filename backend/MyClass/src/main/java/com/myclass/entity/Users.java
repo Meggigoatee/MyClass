@@ -49,7 +49,7 @@ public class Users {
 	
 	// 교사 여부
 	@NotNull(message = "회원 종류를 선택해주세요.")
-	private boolean isTeacher;
+	private char isTeacher;
 	
 	// 학교
 	private String school;

@@ -16,14 +16,15 @@ public class Classrooms {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int class_id;
 	
+	@NotBlank(message = "과목을 입력하세요")
 	// 클래스 과목
 	private String subject;
 	
 	@NotBlank(message = "클래스 이름을 입력하세요")
 	// 클래스 이름
-	private String class_name;
+	private String className;
 	
 	// 클래스 설명
-	private String class_exp;
+	private String discription;
 
 }

@@ -1,5 +1,3 @@
-import "./frontpage.css";
-
 const Frontpage = () => {
   return (
     <>

@@ -12,13 +12,6 @@ public class LoginServiceImp implements LoginService{
 	@Autowired
 	private UsersRepository usersRepository;
 
-	// 로그인 요청
-//	@Override
-//	public void loginreq(Users user) {
-//		usersRepository.save(user);
-//		
-//	}
-
 	// 회원가입 요청
 	@Override
 	public String register(Users user) {
@@ -27,6 +20,12 @@ public class LoginServiceImp implements LoginService{
 		}
 		usersRepository.save(user);
 		return "ok";
+	}
+
+	@Override
+	public char isTeacher(String email) {
+		
+		return usersRepository.findByEmail(email).getIsTeacher();
 	}
 
 }

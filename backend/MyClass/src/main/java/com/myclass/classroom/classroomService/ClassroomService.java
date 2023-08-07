@@ -1,17 +1,25 @@
 package com.myclass.classroom.classroomService;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.myclass.entity.ClassMember;
 import com.myclass.entity.Classrooms;
 
 @Service
 public interface ClassroomService {
 	
-//	public Classrooms getClasses(int User_id);
-//	public List<Classrooms> getClassList(int user_id);
-	
 	public List<Classrooms> getClassesByStudentId(int studentId);
+	
+	public Optional<Classrooms> getClassesByClassId(int class_id);
+	
+	public List<ClassMember> getClassMembersByClassId(int class_id);
+	
+	public Map<String, Object> getClassInfo(int class_id);
+	
+	public int saveClassroom(Classrooms classroom);
 
 }

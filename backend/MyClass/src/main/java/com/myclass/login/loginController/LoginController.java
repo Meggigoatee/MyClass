@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,8 +43,8 @@ public class LoginController {
 	public String loginsort() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Users user = (Users) authentication.getPrincipal();
-		boolean isTeacher = user.isTeacher();
-		if(isTeacher) {
+		char isTeacher = user.getIsTeacher();
+		if(isTeacher == 'T') {
 			return "teacher";
 		}else {
 			return "student";
@@ -75,11 +76,16 @@ public class LoginController {
 			data.put("email", result.getFieldError("email"));
 			return data;
 		}else {
-			System.out.println(data);
 			System.out.println(user.getPassword());
-			System.out.println(user.isTeacher());
+			System.out.println(user.getIsTeacher());
 			return data;
 		}
+	}
+	
+	// 로그인 시 isTeacher 반환
+	@PostMapping("/chkisteacher/{email}")
+	public char chkIsTeacher(@PathVariable("email") String email) {
+		return loginService.isTeacher(email);
 	}
 	
 //	@PostMapping("/register")

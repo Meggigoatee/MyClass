@@ -12,13 +12,17 @@ import Avatar from "./components/student/avatar/avatar";
 import Room from "./components/student/myclassroom/room";
 import Studentlayout from "./components/student/layout/studentlayout";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import Joinform from "./components/login/joinform";
 import PrivateRoute from "./functions/privateRoute";
+import Teacherlayout from "./components/teacher/layout/teacherlayout";
+import Teacherclassroom from "./components/teacher/myclassroom/teacherclassroom";
+import NewClassForm from "./components/teacher/myclassroom/newclassform";
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="container-fluid p-0">
+      <div className="container-fluid vh-100 p-0">
         <Routes>
           <Route path="frontpage" element={<Frontpage />} />
           <Route path="loginform" element={<Loginform />} />
@@ -31,6 +35,12 @@ function App() {
             </Route>
             <Route path="schedule" element={<Schedule />} />
             <Route path="avatar" element={<Avatar />} />
+          </Route>
+          <Route path="tea" element={<Teacherlayout />}>
+            <Route path="newclass" element={<NewClassForm />} />
+            <Route path="myclassroom" element={<Teacherclassroom />}>
+              <Route path="room/:roomNum" element={<Room />} />
+            </Route>
           </Route>
         </Routes>
       </div>

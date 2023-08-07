@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Joinform = () => {
   // 가입 폼에 대한 입력 설정
@@ -9,7 +9,7 @@ const Joinform = () => {
     passwordchk: "",
     name: "",
     nick: "",
-    isteacher: null,
+    isteacher: "",
   });
 
   const { email, password, passwordchk, name, nick, isteacher } = input;
@@ -19,9 +19,9 @@ const Joinform = () => {
     console.log(e.target.value); // radio 버튼의 최신 값 출력
     let teacherval = e.target.value;
     if (teacherval === "teacher") {
-      setInput({ ...input, isteacher: true });
+      setInput({ ...input, isteacher: "T" });
     } else {
-      setInput({ ...input, isteacher: false });
+      setInput({ ...input, isteacher: "F" });
     }
   };
 
@@ -54,9 +54,8 @@ const Joinform = () => {
     user.append("password", password);
     user.append("name", name);
     user.append("nick", nick);
-    user.append("isteacher", isteacher);
+    user.append("isTeacher", isteacher);
     user.append("passwordchk", passwordchk);
-    console.log(isteacher);
 
     const response = await axios.post(`http://localhost:8080/register`, user);
     let errorList = response.data;
@@ -65,6 +64,7 @@ const Joinform = () => {
     } else {
       setInputReset();
       window.alert("회원가입 완료");
+      console.log(isteacher);
       window.location.href = "/loginform";
     }
   };

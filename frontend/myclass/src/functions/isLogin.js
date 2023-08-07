@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 
 const isLogin = () => {
-  return !!Cookies.get("cookieeee");
+  return !!Cookies.get("JSESSIONID");
 };
 
 export default isLogin;

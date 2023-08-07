@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Myclassroom = () => {
+const Teacherclassroom = () => {
   const [myclassroom, setMyclassroom] = useState([]);
 
   const getClasses = async () => {
@@ -37,6 +37,10 @@ const Myclassroom = () => {
     }
   };
 
+  const newClass = () => {
+    window.location.href = "newclass";
+  };
+
   const clickClass = () => {};
 
   //useEffect
@@ -50,7 +54,11 @@ const Myclassroom = () => {
         <h2>나의 클래스</h2>
       </div>
       <div className="row">
-        <button className="col-6 mx-auto btn btn-warning" type="button">
+        <button
+          className="col-6 mx-auto btn btn-warning"
+          type="button"
+          onClick={newClass}
+        >
           새로운 클래스 추가
         </button>
       </div>
@@ -88,4 +96,4 @@ const Myclassroom = () => {
   );
 };
 
-export default Myclassroom;
+export default Teacherclassroom;

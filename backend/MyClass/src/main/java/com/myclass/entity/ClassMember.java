@@ -24,10 +24,10 @@ public class ClassMember {
 	// 클래스 id
 	// private int class_id;
 	
-	// 교사 id
-	private int teacherId;
+	// 이용자 id
+	private int userId;
 	
-	// 학생 id
-	private int studentId;
+	// 교사 여부
+	private char isTeacher;
 		
 }

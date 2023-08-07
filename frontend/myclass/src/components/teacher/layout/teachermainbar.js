@@ -14,7 +14,7 @@ const Mainbar = () => {
 
   const hoverStyles = hover
     ? { backgroundColor: "#b02826" }
-    : { backgroundColor: "#6c757d" };
+    : { backgroundColor: "#212529" };
 
   const Logout = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const Mainbar = () => {
     <div className="h-100 d-flex flex-column justify-content-between">
       <div className="text-center">
         <NavLink
-          to="/stu"
+          to="/tea"
           className="fw-bold fst-italic my-2 fs-1 text-decoration-none text-warning"
         >
           My Class
@@ -39,10 +39,10 @@ const Mainbar = () => {
       <ul className="nav flex-column nav-pills nav-fill fs-4">
         <li className="nav-item">
           <NavLink
-            to="/stu/myclassroom"
+            to="/tea/myclassroom"
             className="nav-link py-2 rounded-0 text-white"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+              backgroundColor: isActive ? "#FFC107" : "#212529",
             })}
           >
             나의 클래스
@@ -50,10 +50,10 @@ const Mainbar = () => {
         </li>
         <li className="nav-item">
           <NavLink
-            to="/stu/schedule"
+            to="/tea/schedule"
             className="nav-link py-2 rounded-0 text-white"
             style={({ isActive }) => ({
-              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+              backgroundColor: isActive ? "#FFC107" : "#212529",
             })}
           >
             일정표
@@ -61,13 +61,13 @@ const Mainbar = () => {
         </li>
         <li className="nav-item">
           <NavLink
-            to="/stu/avatar"
+            to="/tea/problems"
             className="nav-link py-2 rounded-0 text-white "
             style={({ isActive }) => ({
-              backgroundColor: isActive ? "#FFC107" : "#6c757d",
+              backgroundColor: isActive ? "#FFC107" : "#212529",
             })}
           >
-            아바타
+            문제 관리
           </NavLink>
         </li>
       </ul>
@@ -76,18 +76,12 @@ const Mainbar = () => {
         {isToggle ? (
           <ul className="nav flex-column nav-pills nav-fill fs-5">
             <li className="nav-item">
-              <NavLink
-                to="/stu/my"
-                className="nav-link py-2 rounded-0 text-white"
-              >
+              <NavLink to="/tea" className="nav-link py-2 rounded-0 text-white">
                 내 정보 수정
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                to="/stu/config"
-                className="nav-link py-2 rounded-0 text-white"
-              >
+              <NavLink to="/tea" className="nav-link py-2 rounded-0 text-white">
                 설정
               </NavLink>
             </li>

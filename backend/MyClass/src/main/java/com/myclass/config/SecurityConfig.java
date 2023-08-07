@@ -50,7 +50,9 @@ public class SecurityConfig {
         http.addFilter(corsConfig.corsFilter());
 		http.authorizeHttpRequests((requests) -> requests
 			.requestMatchers("/", "/loginform", "/test", "/loginreq", "/register", "/loginsort").permitAll()
-			.anyRequest().authenticated()
+			.anyRequest().
+			permitAll()
+//			authenticated()
 		)
 		.formLogin((form) -> form
 //			.loginPage("/loginform")
@@ -68,6 +70,10 @@ public class SecurityConfig {
 			        cookie.setSecure(false);  // HTTPS를 이용하여 쿠키를 전송하도록 설정합니다.
 			        cookie.setHttpOnly(false);  // JavaScript를 이용한 쿠키 접근을 방지합니다.
 			        cookie.setPath("/");  // 쿠키가 사용되는 경로를 설정합니다.
+			     // SameSite 설정 추가
+			        String cookieHeader = String.format("%s; %s", cookie.toString(), "SameSite=none");
+
+			        response.addHeader("Set-Cookie", cookieHeader);
 
 			        // 쿠키를 HTTP 응답에 담아서 보냅니다.
 			        response.addCookie(cookie);

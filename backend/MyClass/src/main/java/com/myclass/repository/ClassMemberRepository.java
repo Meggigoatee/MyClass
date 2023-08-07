@@ -6,13 +6,16 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.myclass.entity.ClassMember;
+import com.myclass.entity.Classrooms;
 
 public interface ClassMemberRepository extends JpaRepository<ClassMember, Integer>{
 	
 	
-	List<ClassMember> findByTeacherId(int teacherId);
+	List<ClassMember> findByUserId(int userId);
 	
 //	@EntityGraph(attributePaths = {"Classrooms"})
-	List<ClassMember> findByStudentId(int studentId);
+//	List<ClassMember> findByStudentId(int userId);
+	
+	List<ClassMember> findByClassrooms(Classrooms classrooms);
 
 }

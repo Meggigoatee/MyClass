@@ -1,13 +1,19 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import "./loginform.css";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { logIn } from "../../redux/loginAction";
 
 const Loginform = () => {
   const [input, setInput] = useState({ email: "", password: "" });
   const { email, password } = input;
-  // const isLoggedIn = useSelector(state => state.isLoggedIn);
+
+  // const { isLoggedIn, user_email, isTeacher } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  // const handleLogin = (email, isTeacher) => {
+  //   dispatch(logIn(user_email, isTeacher));
+  // };
 
   // input 이벤트 핸들러
   const handleValueChange = (e) => {
@@ -31,9 +37,18 @@ const Loginform = () => {
       //쿠키를 확인하는 코드
       const cookieValue = Cookies.get("JSESSIONID");
       if (cookieValue) {
-        // dispatch(login({ username: 'example' }));
-        localStorage.setItem("email", email);
-        window.location.href = "/stu";
+        const loginDataResponse = await axios.post(
+          `http://localhost:8080/chkisteacher/${email}`
+        );
+        let isTeacher = loginDataResponse.data;
+        window.localStorage.setItem("email", email);
+        window.localStorage.setItem("isLogin", true);
+        window.localStorage.setItem("isTeacher", isTeacher);
+        if (isTeacher === "T") {
+          window.location.href = "/tea";
+        } else {
+          window.location.href = "/stu";
+        }
       } else {
         window.alert("로그인 실패");
       }
@@ -83,6 +98,7 @@ const Loginform = () => {
                 />
               </label>
             </div>
+            <br />
             <button
               className="btn btn-outline-success"
               type="button"
