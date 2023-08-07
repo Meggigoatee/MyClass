@@ -1,4 +1,28 @@
 
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /
+#    encoding:
+#      charset: UTF-8
+#      enabled: true
+#      force: true
+#
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/myclass?serverTimezone=Asia/Seoul
+#    username: newdeal
+#    password: 0000
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#    show-sql: true
+#    
+
 server:
   port: 8080
   servlet:

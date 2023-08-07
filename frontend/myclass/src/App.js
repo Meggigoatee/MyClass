@@ -5,7 +5,7 @@ import Frontpage from "./components/login/frontpage";
 import "./App.css";
 import Loginform from "./components/login/loginform";
 import Joinselect from "./components/login/joinselect";
-import Problem from "./components/teacher/problems/problem";
+import Problem from "./components/teacher/problems/problems";
 import Myclassroom from "./components/student/myclassroom/myclassroom";
 import Schedule from "./components/student/schedule/schedule";
 import Avatar from "./components/student/avatar/avatar";
@@ -17,7 +17,11 @@ import Joinform from "./components/login/joinform";
 import PrivateRoute from "./functions/privateRoute";
 import Teacherlayout from "./components/teacher/layout/teacherlayout";
 import Teacherclassroom from "./components/teacher/myclassroom/teacherclassroom";
+import TeacherRoom from "./components/teacher/myclassroom/teacherRoom";
 import NewClassForm from "./components/teacher/myclassroom/newclassform";
+import TeacherSchedule from "./components/teacher/schedule/teacherschedule";
+import Problems from "./components/teacher/problems/problems";
+import ProblemForm from "./components/teacher/problems/problemform";
 
 function App() {
   return (
@@ -38,8 +42,11 @@ function App() {
           </Route>
           <Route path="tea" element={<Teacherlayout />}>
             <Route path="newclass" element={<NewClassForm />} />
-            <Route path="myclassroom" element={<Teacherclassroom />}>
-              <Route path="room/:roomNum" element={<Room />} />
+            <Route path="myclassroom" element={<Teacherclassroom />}/>
+            <Route path="room/:roomNum" element={<TeacherRoom />} />
+            <Route path="schedule" element={<TeacherSchedule />} />
+            <Route path="problems" element={<Problems />} >
+              <Route path="problemform" element={<ProblemForm />} />
             </Route>
           </Route>
         </Routes>

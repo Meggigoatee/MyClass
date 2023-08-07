@@ -76,15 +76,15 @@ const Mainbar = () => {
         {isToggle ? (
           <ul className="nav flex-column nav-pills nav-fill fs-5">
             <li className="nav-item">
-              <NavLink to="/tea" className="nav-link py-2 rounded-0 text-white">
+              <NavLink to="/tea" className="nav-link py-2 rounded-0 text-white" style={{backgroundColor: "#212529"}}>
                 내 정보 수정
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink to="/tea" className="nav-link py-2 rounded-0 text-white">
                 설정
               </NavLink>
-            </li>
+            </li> */}
             <hr />
             <li className="nav-item">
               <button
