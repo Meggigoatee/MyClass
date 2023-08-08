@@ -22,6 +22,7 @@ import NewClassForm from "./components/teacher/myclassroom/newclassform";
 import TeacherSchedule from "./components/teacher/schedule/teacherschedule";
 import Problems from "./components/teacher/problems/problems";
 import ProblemForm from "./components/teacher/problems/problemform";
+import EditClassForm from "./components/teacher/myclassroom/editclassform";
 
 function App() {
   return (
@@ -42,10 +43,11 @@ function App() {
           </Route>
           <Route path="tea" element={<Teacherlayout />}>
             <Route path="newclass" element={<NewClassForm />} />
-            <Route path="myclassroom" element={<Teacherclassroom />}/>
+            <Route path="editclass/:roomNum" element={<EditClassForm />} />
+            <Route path="myclassroom" element={<Teacherclassroom />} />
             <Route path="room/:roomNum" element={<TeacherRoom />} />
             <Route path="schedule" element={<TeacherSchedule />} />
-            <Route path="problems" element={<Problems />} >
+            <Route path="problems" element={<Problems />}>
               <Route path="problemform" element={<ProblemForm />} />
             </Route>
           </Route>

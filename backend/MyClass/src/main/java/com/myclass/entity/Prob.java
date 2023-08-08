@@ -13,34 +13,34 @@ public class Prob {
 	// 문제 id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int prob_id;
+	private int probId;
 	
 	// 문제지 id
-	private int problem_id;
+	private int problemId;
 	
 	// 문제 설명
-	private String prob_exp;
+	private String probExp;
 	
 	// 문제 본문
-	private String prob_main;
+	private String probTitle;
 	
 	// 객관식 여부
 	private boolean isMultiple;
 	
 	// 보기 1
-	private String cho_1;
+	private String cho1;
 
 	// 보기 2
-	private String cho_2;
+	private String cho2;
 
 	// 보기 3
-	private String cho_3;
+	private String cho3;
 
 	// 보기 4
-	private String cho_4;
+	private String cho4;
 
 	// 보기 5
-	private String cho_5;
+	private String cho5;
 	
 	// 정담
 	private String correct;

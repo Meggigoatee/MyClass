@@ -40,8 +40,9 @@ const Teacherclassroom = () => {
   const newClass = () => {
     window.location.href = "newclass";
   };
-
-  const clickClass = () => {};
+  const clickClass = (classId) => {
+    window.location.href = `room/${classId}`;
+  };
 
   //useEffect
   useEffect(() => {
@@ -73,25 +74,25 @@ const Teacherclassroom = () => {
             {row.map((value, valueIndex) => (
               <div
                 key={valueIndex}
-                className="col-6 col-md-4 border border-warning rounded"
-                onClick={clickClass}
+                className="col-md-4 border border-warning rounded"
               >
-                {value}
+                <div className="mt-2">이름: {value.className}</div>
+                <div className="mt-2">과목: {value.subject}</div>
+                <div className="mt-2" style={{ overflow: "hidden" }}>
+                  설명: {value.discription}
+                </div>
+                <button
+                  className="btn btn-warning mt-2"
+                  type="button"
+                  onClick={() => clickClass(value.classId)}
+                >
+                  이동
+                </button>
               </div>
             ))}
           </div>
         ))}
       </div>
-      {/* <div className="row text-center" style={{ height: 180 }}>
-        <div
-          className="col-6 col-md-4 border border-warning rounded"
-          onClick={clickClass}
-        >
-          강의박스
-        </div>
-        <div className="col-6 col-md-4">강의박스</div>
-        <div className="col-6 col-md-4">강의박스</div>
-      </div> */}
     </div>
   );
 };

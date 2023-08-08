@@ -3,8 +3,6 @@ package com.myclass.classroom.classroomController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myclass.classroom.classroomService.ClassroomService;
-import com.myclass.entity.ClassMember;
 import com.myclass.entity.Classrooms;
 import com.myclass.users.usersService.UsersService;
 
@@ -37,8 +34,6 @@ public class ClassroomController {
 		System.out.println(email);
 		int user_id = usersService.getUserIdbyEmail(email);
 		List<Classrooms> myClasses = classroomService.getClassesByStudentId(user_id);
-		
-		
 		return myClasses;
 		
 	}
@@ -46,9 +41,8 @@ public class ClassroomController {
 	// 특정 클래스 선택
 	@GetMapping("/myclassroom/{class_id}")
 	public Map<String, Object> myclassroomspec(@PathVariable("class_id") int class_id) {
-		System.out.println(class_id);
-		
-		return classroomService.getClassInfo(class_id);
+		Map<String, Object> map = classroomService.getClassInfo(class_id);
+		return map;
 	}
 	
 	// 클래스 만들기
@@ -60,9 +54,31 @@ public class ClassroomController {
 			map.put("subject", result.getFieldError("subject"));
 			return map;
 		}
-		classroomService.
+		classroomService.saveClassroom(classroom, email);
+		
 		return map;
 	}
+	
+	// 클래스 수정
+	@PostMapping("/editclass")
+	public Map<String, Object> saveEditClass(@Valid Classrooms classroom, BindingResult result){
+		Map<String, Object> map = new HashMap<>();
+		if(result.hasErrors()) {
+			map.put("name", result.getFieldError("className"));
+			map.put("subject", result.getFieldError("subject"));
+			return map;
+		}
+		classroomService.saveClassroom(classroom);
+		
+		return map;
+	}
+
+	// 클래스 삭제
+	@PostMapping("/deleteclass/{classId}")
+	public void deleteClass(@PathVariable("classId") int classId) {
+		classroomService.deleteClassroom(classId);
+	}
+	
 	
 	// 클래스 검색
 	

@@ -3,8 +3,6 @@ package com.myclass.entity;
 import java.util.Date;
 import java.util.Map;
 
-import org.springframework.boot.configurationprocessor.json.JSONObject;
-
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +30,8 @@ public class Problems {
 	private int classId;
 		
 	// 문제 리스트
-	@Convert(converter = JsonConverter.class)
-    private Map<String, Object> problemList;
+//	@Convert(converter = JsonConverter.class)
+//    private Map<String, Object> problemList;
 	
 	// 교부 날짜
 	private Date distribution;

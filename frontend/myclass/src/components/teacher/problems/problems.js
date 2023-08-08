@@ -13,8 +13,8 @@ const Problems = () => {
   // };
 
   const newSheet = () => {
-    window.location.href="/problemform"
-  }
+    window.location.href = "/tea/problemform";
+  };
 
   return (
     <>
@@ -22,17 +22,16 @@ const Problems = () => {
         <div className="row text-center mt-3">
           <h2>문제지 관리</h2>
         </div>
-          <div className="row">
-            <button
-              className="col-6 mx-auto btn btn-warning"
-              type="button"
-              onClick={newSheet}
-            >
-              새로운 문제지 추가
-            </button>
-          </div>
-          <hr />
-            
+        <div className="row">
+          <button
+            className="col-6 mx-auto btn btn-warning"
+            type="button"
+            onClick={newSheet}
+          >
+            새로운 문제지 추가
+          </button>
+        </div>
+        <hr />
 
         {/* <h2>문제지 만들기</h2>
         <input type="text" placeholder="문제지 제목을 입력하세요"></input>

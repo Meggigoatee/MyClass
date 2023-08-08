@@ -20,6 +20,10 @@ public interface ClassroomService {
 	
 	public Map<String, Object> getClassInfo(int class_id);
 	
-	public int saveClassroom(Classrooms classroom);
+	public void saveClassroom(Classrooms classroom);
+	
+	public void saveClassroom(Classrooms classroom, String email);
+	
+	public void deleteClassroom(int classId);
 
 }

@@ -13,9 +13,8 @@ public interface ClassMemberRepository extends JpaRepository<ClassMember, Intege
 	
 	List<ClassMember> findByUserId(int userId);
 	
-//	@EntityGraph(attributePaths = {"Classrooms"})
-//	List<ClassMember> findByStudentId(int userId);
-	
 	List<ClassMember> findByClassrooms(Classrooms classrooms);
+	
+	void deleteByClassrooms(Classrooms classrooms);
 
 }

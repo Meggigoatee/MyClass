@@ -15,14 +15,11 @@ public class ClassMember {
 	// 고유 id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int class_member_id;
+	private int classMemberId;
 	
 	@ManyToOne
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "classId")
     private Classrooms classrooms;
-	
-	// 클래스 id
-	// private int class_id;
 	
 	// 이용자 id
 	private int userId;

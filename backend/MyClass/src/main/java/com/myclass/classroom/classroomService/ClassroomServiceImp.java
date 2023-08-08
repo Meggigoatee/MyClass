@@ -12,12 +12,19 @@ import org.springframework.stereotype.Service;
 import com.myclass.entity.ClassMember;
 import com.myclass.entity.Classrooms;
 import com.myclass.entity.Problems;
+import com.myclass.entity.Users;
 import com.myclass.repository.ClassMemberRepository;
 import com.myclass.repository.ClassroomsRepository;
 import com.myclass.repository.ProblemsRepository;
+import com.myclass.repository.UsersRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClassroomServiceImp implements ClassroomService{
+	
+	@Autowired
+	private UsersRepository usersRepository;
 	
 	@Autowired
 	private ClassroomsRepository classroomsRepository;
@@ -51,23 +58,42 @@ public class ClassroomServiceImp implements ClassroomService{
 
 	@Override
 	public Map<String, Object> getClassInfo(int class_id) {
-		Classrooms classroom = classroomsRepository.getReferenceById(class_id);
-		List<ClassMember> memberList = classMemberRepository.findByClassrooms(classroom);
+		List<Classrooms> classroom = classroomsRepository.findByClassId(class_id);
+		List<ClassMember> memberList = classMemberRepository.findByUserId(class_id);
 		List<Problems> problemList = problemsRepository.findByClassId(class_id);
 		Map<String, Object> map = new HashMap<>();
-		map.put("classroom", classroom);
+		map.put("classData", classroom);
 		map.put("memberList", memberList);
 		map.put("problemList", problemList);
 		return map;
 	}
+	
+	@Override
+	public void saveClassroom(Classrooms classroom) {
+		classroomsRepository.save(classroom);
+	}
 
 	@Override
-	public int saveClassroom(Classrooms classroom) {
+	public void saveClassroom(Classrooms classroom, String email) {
 		classroomsRepository.save(classroom);
-		return 0;
+		Classrooms ccc = classroomsRepository.findByClassName(classroom.getClassName());
+		int classId = ccc.getClassId();
+		int teacherId = usersRepository.findByEmail(email).getUser_id();
+		ClassMember teacher = new ClassMember();
+		teacher.setUserId(teacherId);
+		teacher.setIsTeacher('T');
+		teacher.setClassrooms(ccc);
+		classMemberRepository.save(teacher);
 	}
-	
-	
 
+	@Transactional
+	@Override
+	public void deleteClassroom(int classId) {
+		classMemberRepository.deleteByClassrooms(classroomsRepository.getReferenceById(classId));
+		classroomsRepository.deleteById(classId);
+		
+	}
+
+	
 
 }

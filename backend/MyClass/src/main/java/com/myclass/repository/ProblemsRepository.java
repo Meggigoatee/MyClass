@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ProblemsRepository extends JpaRepository<Problems, Integer>{
 	
-	public List<Problems> findByClassId(int classId);
+	List<Problems> findByClassId(int classId);
 
 }
