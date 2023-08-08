@@ -26,13 +26,6 @@ const TeacherRoom = () => {
   const editClass = async (e) => {
     e.preventDefault();
     window.location.href = `/tea/editclass/${roomNum}`;
-    // if (window.confirm("클래스와 일정이 삭제됩니다. 계속하시겠습니까?")) {
-    //   await axios.post(`http://localhost:8080/deleteclass/${roomNum}`);
-    //   window.alert("클래스가 삭제되었습니다.");
-    //   window.location.href = "/tea/myclassroom";
-    // } else {
-    //   window.alert("취소 되었습니다.");
-    // }
   };
 
   const newProblem = () => {};

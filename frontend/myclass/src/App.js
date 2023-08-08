@@ -47,9 +47,8 @@ function App() {
             <Route path="myclassroom" element={<Teacherclassroom />} />
             <Route path="room/:roomNum" element={<TeacherRoom />} />
             <Route path="schedule" element={<TeacherSchedule />} />
-            <Route path="problems" element={<Problems />}>
-              <Route path="problemform" element={<ProblemForm />} />
-            </Route>
+            <Route path="problems" element={<Problems />}/>
+            <Route path="problemform" element={<ProblemForm />} />
           </Route>
         </Routes>
       </div>
