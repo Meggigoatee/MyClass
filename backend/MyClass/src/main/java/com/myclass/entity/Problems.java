@@ -1,6 +1,5 @@
 package com.myclass.entity;
 
-import java.util.Date;
 import java.util.Map;
 
 import jakarta.persistence.Convert;
@@ -25,21 +24,22 @@ public class Problems {
 	
 	// 교사 아이디
 	private int teacherId;
+		
+	// 문제 리스트
+	@Convert(converter = JsonConverter.class)
+    private Map<String, Object> problemList;
 	
 	// 클래스 id
 	private int classId;
-		
-	// 문제 리스트
-//	@Convert(converter = JsonConverter.class)
-//    private Map<String, Object> problemList;
+	// 추후 별도 task 테이블 생성 후 관리할 것
 	
 	// 교부 날짜
-	private Date distribution;
-	
-	// 마감 날짜
-	private Date endDate;
-	
-	// 즉시 체점 여부
-	private boolean isScoring;
+//	private Date distribution;
+//	
+//	// 마감 날짜
+//	private Date endDate;
+//	
+//	// 즉시 체점 여부
+//	private boolean isScoring;
 
 }
