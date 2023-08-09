@@ -13,5 +13,7 @@ public interface ClassroomsRepository extends JpaRepository<Classrooms, Integer>
 	 Classrooms findByClassName(String className);
 	 
 	 List<Classrooms> findByClassId(int classId);
+	 
+	 
 
 }

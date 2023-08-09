@@ -37,10 +37,12 @@ public class ClassroomServiceImp implements ClassroomService{
 
 	@Override
 	public List<Classrooms> getClassesByStudentId(int userId) {
-        List<ClassMember> classMembers = classMemberRepository.findByUserId(userId);
-        return classMembers.stream()
-                           .map(ClassMember::getClassrooms)
-                           .collect(Collectors.toList());
+//        List<ClassMember> classMembers = classMemberRepository.findByUserId(userId);
+//        return classMembers.stream()
+//        		.map(ClassMember::getClassrooms)
+//        		.collect(Collectors.toList());
+        List<Classrooms> classrooms = classroomsRepository.findAll();
+        return classrooms;
     }
 
 	@Override

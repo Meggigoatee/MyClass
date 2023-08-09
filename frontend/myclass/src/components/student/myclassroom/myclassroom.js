@@ -49,11 +49,11 @@ const Myclassroom = () => {
       <div className="row text-center mt-3">
         <h2>나의 클래스</h2>
       </div>
-      <div className="row">
-        <button className="col-6 mx-auto btn btn-warning" type="button">
+      {/* <div className="row">
+        <button className="col-6 mx-auto btn btn-warning" type="button" >
           새로운 클래스 추가
         </button>
-      </div>
+      </div> */}
       <hr />
       <div>
         {myclassroom.map((row, rowIndex) => (

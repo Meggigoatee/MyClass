@@ -27,7 +27,7 @@ import EditClassForm from "./components/teacher/myclassroom/editclassform";
 function App() {
   return (
     <Provider store={store}>
-      <div className="container-fluid vh-100 p-0">
+      <div className="container-fluid vh-100 p-0 bg-light">
         <Routes>
           <Route path="frontpage" element={<Frontpage />} />
           <Route path="loginform" element={<Loginform />} />

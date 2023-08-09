@@ -1,20 +1,35 @@
-import React, { useState } from "react";
-import Prob from "./prob";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Problems = () => {
-  // const [probCount, setProbCount] = useState(1);
-
-  // const handleAddProb = () => {
-  //   setProbCount((prevCount) => prevCount + 1);
-  // };
-
-  // const handleDeleteProb = (index) => {
-  //   setProbCount((prevCount) => prevCount - 1);
-  // };
 
   const newSheet = () => {
     window.location.href = "/tea/problemform";
   };
+
+  const [problem, setProblem] = useState([]);
+
+  const email = localStorage.getItem('email');
+
+  const getProblems = async () => {
+    const response = await axios.get(`http://localhost:8080/${email}`);
+    let problemList = response.data;
+    let temparray = [];
+
+    problemList.forEach(element => {
+      temparray.push(element);
+    });
+
+    setProblem(temparray);
+  }
+
+  const problemDelete = () => {
+
+  }
+
+  useEffect(()=>{
+    getProblems();
+  },[])
 
   return (
     <>
@@ -32,19 +47,15 @@ const Problems = () => {
           </button>
         </div>
         <hr />
-
-        {/* <h2>문제지 만들기</h2>
-        <input type="text" placeholder="문제지 제목을 입력하세요"></input>
-        <br />
-        <textarea placeholder="문제지 설명을 입력하세요"></textarea>
-        {[...Array(probCount)].map((_, index) => (
-          <div id={`problem_table_${index}`} key={index}>
-            <p>문제 {index + 1}</p>
-            <Prob></Prob>
-            <button onClick={() => handleDeleteProb(index)}>문제 삭제</button>
-          </div>
-        ))}
-        <button onClick={handleAddProb}>새 문제 만들기</button> */}
+        <div className="row">
+            {problem.map((value, index) => {
+              <div key={index}>
+                <span>{value.problemName}</span>
+                <button className="btn btn-outline-danger" onClick={problemDelete}>문제지 삭제</button>
+              </div>
+              
+            })}
+        </div>
       </div>
     </>
   );
