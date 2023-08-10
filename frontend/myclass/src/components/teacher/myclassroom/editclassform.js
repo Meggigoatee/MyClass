@@ -54,7 +54,7 @@ const EditClassForm = () => {
 
   const classInfo = async () => {
     const response = await axios.get(
-      `http://localhost:8080/myclassroom/${roomNum}`
+      `http://localhost:8088/myclassroom/${roomNum}`
     );
     const Data = response.data.classData[0];
     const getname = Data.className;
@@ -78,7 +78,7 @@ const EditClassForm = () => {
     editClass.append("discription", discription);
 
     const response = await axios.post(
-      `http://localhost:8080/editclass`,
+      `http://localhost:8088/editclass`,
       editClass
     );
     let errorList = response.data;
@@ -95,7 +95,7 @@ const EditClassForm = () => {
   const deleteClass = async (e) => {
     e.preventDefault();
     if (window.confirm("클래스와 일정이 삭제됩니다. 계속하시겠습니까?")) {
-      await axios.post(`http://localhost:8080/deleteclass/${roomNum}`);
+      await axios.post(`http://localhost:8088/deleteclass/${roomNum}`);
       window.alert("클래스가 삭제되었습니다.");
       window.location.href = "/tea/myclassroom";
     } else {

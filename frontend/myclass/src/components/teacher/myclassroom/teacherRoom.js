@@ -16,7 +16,7 @@ const TeacherRoom = () => {
 
   const RoomDataReq = async () => {
     const response = await axios.get(
-      `http://localhost:8080/myclassroom/${roomNum}`
+      `http://localhost:8088/myclassroom/${roomNum}`
     );
     console.log(response);
     setClassData(response.data.classData[0]);
@@ -34,7 +34,7 @@ const TeacherRoom = () => {
     let problemId = id;
     console.log(problemId);
     const response = await axios.post(
-      `http://localhost:8080/addtask/${problemId}?roomNum=${roomNum}`
+      `http://localhost:8088/addtask/${problemId}?roomNum=${roomNum}`
     );
     console.log(response);
     if (response.status === 200) {
@@ -118,7 +118,7 @@ const TeacherRoom = () => {
               ></button>
             </div>
             <div className="modal-body">
-              {taskList.map((value, index) => (
+              {taskList ? taskList.map((value, index) => (
                 <div className="row">
                   <div className="col" key={index}>
                     {value.problemName}
@@ -134,7 +134,7 @@ const TeacherRoom = () => {
                     </button>
                   </div>
                 </div>
-              ))}
+              )): '아직 문제지가 없습니다.'}
             </div>
             <div className="modal-footer">
               <button

@@ -57,7 +57,7 @@ const Joinform = () => {
     user.append("isTeacher", isteacher);
     user.append("passwordchk", passwordchk);
 
-    const response = await axios.post(`http://localhost:8080/register`, user);
+    const response = await axios.post(`http://localhost:8088/register`, user);
     let errorList = response.data;
     if (JSON.stringify(errorList) !== "{}") {
       setError(errorList);

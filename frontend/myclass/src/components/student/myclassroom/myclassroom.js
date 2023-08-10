@@ -7,7 +7,7 @@ const Myclassroom = () => {
   const getClasses = async () => {
     let email = localStorage.getItem("email");
     const response = await axios.post(
-      `http://localhost:8080/myclassroom/${email}`,
+      `http://localhost:8088/myclassroom/${email}`,
       { withCredentials: true }
     );
     console.log(response.data);

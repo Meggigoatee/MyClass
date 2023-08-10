@@ -18,7 +18,7 @@ const Mainbar = () => {
 
   const Logout = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/logout");
+    await axios.post("http://localhost:8088/logout");
     localStorage.removeItem("email");
     localStorage.removeItem("isLogin");
     localStorage.removeItem("isTeacher");

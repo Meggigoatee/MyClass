@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myclass.entity.Prob;
 import com.myclass.entity.Problems;
 import com.myclass.problem.problemService.ProblemService;
-import com.myclass.repository.ProblemsRepository;
 
 @RestController
 public class ProblemController {
@@ -33,9 +32,9 @@ public class ProblemController {
 	// 문제지 생성
 	@PostMapping("/saveproblem/{email}")
 	public String saveProblem(@RequestBody List<Prob> probs, @PathVariable("email") String email, @RequestParam String problemName) {
-		System.out.println(probs.get(0).getProbId());
 		System.out.println(probs.get(0).getProbTitle());
-		System.out.println(problemName);
+		System.out.println(probs.get(0).getMmm());
+		System.out.println(probs.get(0).getSss());
 		problemService.saveProblem(probs, email, problemName);
 		return null;
 	}

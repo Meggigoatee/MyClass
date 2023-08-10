@@ -11,14 +11,14 @@ const Problems = () => {
   const email = localStorage.getItem("email");
 
   const getProblems = async () => {
-    const response = await axios.get(`http://localhost:8080/problems/${email}`);
+    const response = await axios.get(`http://localhost:8088/problems/${email}`);
     let problemList = response.data;
     setProblem(problemList);
   };
 
   const problemDelete = async (id) => {
     const response = await axios.post(
-      `http://localhost:8080/problemdelete/${id}`
+      `http://localhost:8088/problemdelete/${id}`
     );
     console.log(response);
     getProblems();

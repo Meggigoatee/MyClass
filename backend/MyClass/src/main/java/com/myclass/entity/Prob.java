@@ -43,9 +43,9 @@ public class Prob {
 	private String cho5;
 	
 	// 객관식 정답
-	private int mCorrect;
+	private int mmm;
 	
 	// 주관식 정담
-	private String sCorrect;
-	
+	private String sss;
+		
 }

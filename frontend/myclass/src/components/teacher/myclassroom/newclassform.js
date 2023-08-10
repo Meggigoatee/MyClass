@@ -58,7 +58,7 @@ const NewClassForm = () => {
     newClass.append("discription", discription);
 
     const response = await axios.post(
-      `http://localhost:8080/saveclass/${email}`,
+      `http://localhost:8088/saveclass/${email}`,
       newClass
     );
     let errorList = response.data;

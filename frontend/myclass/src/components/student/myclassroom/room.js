@@ -11,7 +11,7 @@ const Room = () => {
 
   const RoomDataReq = async () => {
     const response = await axios.get(
-      `http://localhost:8080/myclassroom/${roomNum}`
+      `http://localhost:8088/myclassroom/${roomNum}`
     );
     console.log(response);
     setClassData(response.data.classData[0]);

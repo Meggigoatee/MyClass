@@ -31,14 +31,14 @@ const Loginform = () => {
     loginData.append("password", password);
 
     try {
-      await axios.post("http://localhost:8080/login", loginData, {
+      await axios.post("http://localhost:8088/login", loginData, {
         withCredentials: true,
       });
       //쿠키를 확인하는 코드
       const cookieValue = Cookies.get("JSESSIONID");
       if (cookieValue) {
         const loginDataResponse = await axios.post(
-          `http://localhost:8080/chkisteacher/${email}`
+          `http://localhost:8088/chkisteacher/${email}`
         );
         let isTeacher = loginDataResponse.data;
         window.localStorage.setItem("email", email);

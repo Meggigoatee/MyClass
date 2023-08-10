@@ -85,6 +85,7 @@ public class LoginController {
 	// 로그인 시 isTeacher 반환
 	@PostMapping("/chkisteacher/{email}")
 	public char chkIsTeacher(@PathVariable("email") String email) {
+		System.out.println(loginService.isTeacher(email));
 		return loginService.isTeacher(email);
 	}
 	

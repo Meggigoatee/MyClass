@@ -6,9 +6,11 @@ const ProblemForm = () => {
 
   const saveProblem = async () => {
     console.log(problemName);
+    console.log(inputs);
     await axios.post(
-      `http://localhost:8080/saveproblem/${email}?problemName=${problemName.problemName}`,
-      inputs
+      `http://localhost:8088/saveproblem/${email}?problemName=${problemName.problemName}`,
+      inputs,
+      { headers: { 'Content-Type': 'application/json' } }
     );
     window.location.href = "/tea/problems";
   };
@@ -28,12 +30,13 @@ const ProblemForm = () => {
       probTitle: "",
       probExp: "",
       type: "objective",
-      Cho1: "",
-      Cho2: "",
-      Cho3: "",
-      Cho4: "",
-      Cho5: "",
-      answer: "",
+      cho1: "",
+      cho2: "",
+      cho3: "",
+      cho4: "",
+      cho5: "",
+      mmm: 0,
+      sss: "",
     },
   ]);
 
@@ -45,18 +48,19 @@ const ProblemForm = () => {
         probTitle: "",
         probExp: "",
         type: "objective",
-        Cho1: "",
-        Cho2: "",
-        Cho3: "",
-        Cho4: "",
-        Cho5: "",
-        answer: "",
+        cho1: "",
+        cho2: "",
+        cho3: "",
+        cho4: "",
+        cho5: "",
+        mmm: 0,
+        sss: "",
       },
     ]);
   };
 
   const handleChoiceChange = (e, id, choiceIndex) => {
-    const choiceName = `Cho${choiceIndex + 1}`;
+    const choiceName = `cho${choiceIndex + 1}`;
     setInputs(
       inputs.map((input) =>
         input.id === id ? { ...input, [choiceName]: e.target.value } : input
@@ -64,10 +68,18 @@ const ProblemForm = () => {
     );
   };
 
+  const handleRadioChange = (e, id) => {
+    setInputs(
+      inputs.map((input) =>
+        input.id === id ? { ...input, mmm: e.target.value*1 + 1 } : input
+      )
+    );
+  };
+
   const handleAnswerChange = (e, id) => {
     setInputs(
       inputs.map((input) =>
-        input.id === id ? { ...input, answer: e.target.value } : input
+        input.id === id ? { ...input, sss: e.target.value } : input
       )
     );
   };
@@ -103,17 +115,17 @@ const ProblemForm = () => {
           <div className="form-check form-check-inline" key={index.id}>
             <label
               className="form-check-label"
-              htmlFor={`answer${input.id}${index}`}
+              htmlFor={`mmm${input.id}${index}`}
             >
               선택지 {index + 1}
             </label>
             <input
               type="radio"
-              name={`answer${input.id}`}
+              name={`mmm${input.id}`}
               value={index}
-              id={`answer${input.id}${index}`}
+              id={`mmm${input.id}${index}`}
               className="form-check-input"
-              onChange={(e) => handleAnswerChange(e, input.id)}
+              onChange={(e) => handleRadioChange(e, input.id)}
             />
           </div>
         ))}
@@ -123,10 +135,10 @@ const ProblemForm = () => {
 
   const renderSubjectiveInput = (input) => (
     <>
-      <label htmlFor={`answer${input.id}`}>정답</label>
+      <label htmlFor={`sss${input.id}`}>정답</label>
       <input
         type="text"
-        id={`answer${input.id}`}
+        id={`sss${input.id}`}
         className="form-control"
         onChange={(e) => handleAnswerChange(e, input.id)}
       />

@@ -16,6 +16,8 @@ import com.myclass.repository.ProbRepository;
 import com.myclass.repository.ProblemsRepository;
 import com.myclass.repository.UsersRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProblemServiceImp implements ProblemService{
 	
@@ -49,6 +51,7 @@ public class ProblemServiceImp implements ProblemService{
 		return problemsRepository.findByTeacherId(teacherId);
 	}
 
+	@Transactional
 	@Override
 	public void deleteProblem(int id) {
 		problemsRepository.deleteById(id);

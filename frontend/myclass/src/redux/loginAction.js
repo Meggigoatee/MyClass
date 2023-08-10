@@ -15,7 +15,7 @@ export const logIn = (email, isTeacher) => async (dispatch) => {
   try {
     // 비동기 요청 처리
     const response = await axios.post(
-      `http://localhost:8080/chkisteacher/${email}`
+      `http://localhost:8088/chkisteacher/${email}`
     );
     isTeacher = response.data;
 
