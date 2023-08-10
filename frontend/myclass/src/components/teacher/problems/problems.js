@@ -2,34 +2,31 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Problems = () => {
-
   const newSheet = () => {
     window.location.href = "/tea/problemform";
   };
 
   const [problem, setProblem] = useState([]);
 
-  const email = localStorage.getItem('email');
+  const email = localStorage.getItem("email");
 
   const getProblems = async () => {
-    const response = await axios.get(`http://localhost:8080/${email}`);
+    const response = await axios.get(`http://localhost:8080/problems/${email}`);
     let problemList = response.data;
-    let temparray = [];
+    setProblem(problemList);
+  };
 
-    problemList.forEach(element => {
-      temparray.push(element);
-    });
-
-    setProblem(temparray);
-  }
-
-  const problemDelete = () => {
-
-  }
-
-  useEffect(()=>{
+  const problemDelete = async (id) => {
+    const response = await axios.post(
+      `http://localhost:8080/problemdelete/${id}`
+    );
+    console.log(response);
     getProblems();
-  },[])
+  };
+
+  useEffect(() => {
+    getProblems();
+  }, []);
 
   return (
     <>
@@ -47,15 +44,24 @@ const Problems = () => {
           </button>
         </div>
         <hr />
-        <div className="row">
-            {problem.map((value, index) => {
-              <div key={index}>
-                <span>{value.problemName}</span>
-                <button className="btn btn-outline-danger" onClick={problemDelete}>문제지 삭제</button>
-              </div>
-              
-            })}
-        </div>
+        {problem.map((value, index) => (
+          <div className="row d-flex justify-content-center">
+            <div key={index} className="col-4 d-flex align-items-center">
+              {value.problemName}
+            </div>
+            <div className="col-2">
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => {
+                  problemDelete(value.problemId);
+                }}
+                key={index}
+              >
+                문제지 삭제
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

@@ -19,6 +19,10 @@ const Room = () => {
     setProbList(response.data.problemList);
   };
 
+  const solveProblem = (problemId) => {
+    window.location.href = `/stu/problemform/${problemId}`;
+  };
+
   useEffect(() => {
     RoomDataReq();
   }, []);
@@ -36,16 +40,24 @@ const Room = () => {
         </div> */}
       </div>
       <hr />
-      <div className="row text-center">
-        <div className="col">
-          <p>문제 리스트</p>
-          <ul>
-            {probList.map((value, index) => {
-              <li key={index}>{value.problemName}</li>;
-            })}
-          </ul>
-        </div>
+      <div className="row text-center mt-2">
+        <h4>문제 리스트</h4>
       </div>
+      {probList.map((value, index) => (
+        <div className="row d-flex justify-content-center text-center mt-2 p-2 border border-warning rounded align-items-center">
+          <div className="col-6" key={index}>
+            {value.problemName}
+          </div>
+          <div className="col-4">
+            <button
+              className="btn btn-outline-success"
+              onClick={() => solveProblem(value.problemId)}
+            >
+              문제 풀기
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

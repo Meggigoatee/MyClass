@@ -37,7 +37,9 @@ const Myclassroom = () => {
     }
   };
 
-  const clickClass = () => {};
+  const clickClass = (classId) => {
+    window.location.href = `room/${classId}`;
+  };
 
   //useEffect
   useEffect(() => {
@@ -49,11 +51,6 @@ const Myclassroom = () => {
       <div className="row text-center mt-3">
         <h2>나의 클래스</h2>
       </div>
-      {/* <div className="row">
-        <button className="col-6 mx-auto btn btn-warning" type="button" >
-          새로운 클래스 추가
-        </button>
-      </div> */}
       <hr />
       <div>
         {myclassroom.map((row, rowIndex) => (
@@ -66,24 +63,24 @@ const Myclassroom = () => {
               <div
                 key={valueIndex}
                 className="col-6 col-md-4 border border-warning rounded"
-                onClick={clickClass}
               >
-                {value}
+                <div className="mt-2">이름: {value.className}</div>
+                <div className="mt-2">과목: {value.subject}</div>
+                <div className="mt-2" style={{ overflow: "hidden" }}>
+                  설명: {value.discription}
+                </div>
+                <button
+                  className="btn btn-warning mt-2"
+                  type="button"
+                  onClick={() => clickClass(value.classId)}
+                >
+                  이동
+                </button>
               </div>
             ))}
           </div>
         ))}
       </div>
-      {/* <div className="row text-center" style={{ height: 180 }}>
-        <div
-          className="col-6 col-md-4 border border-warning rounded"
-          onClick={clickClass}
-        >
-          강의박스
-        </div>
-        <div className="col-6 col-md-4">강의박스</div>
-        <div className="col-6 col-md-4">강의박스</div>
-      </div> */}
     </div>
   );
 };

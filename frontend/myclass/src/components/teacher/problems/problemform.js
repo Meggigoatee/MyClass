@@ -10,6 +10,7 @@ const ProblemForm = () => {
       `http://localhost:8080/saveproblem/${email}?problemName=${problemName.problemName}`,
       inputs
     );
+    window.location.href = "/tea/problems";
   };
 
   const [problemName, setProblemName] = useState("");

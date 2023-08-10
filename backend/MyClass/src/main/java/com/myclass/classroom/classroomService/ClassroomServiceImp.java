@@ -62,10 +62,14 @@ public class ClassroomServiceImp implements ClassroomService{
 	public Map<String, Object> getClassInfo(int class_id) {
 		List<Classrooms> classroom = classroomsRepository.findByClassId(class_id);
 		List<ClassMember> memberList = classMemberRepository.findByUserId(class_id);
+		List<ClassMember> list = classMemberRepository.findByClassroomsClassIdAndIsTeacher(class_id, 'T');
+		int teacherId = list.get(0).getUserId();
+		List<Problems> taskList = problemsRepository.findByTeacherId(teacherId);
 		List<Problems> problemList = problemsRepository.findByClassId(class_id);
 		Map<String, Object> map = new HashMap<>();
 		map.put("classData", classroom);
 		map.put("memberList", memberList);
+		map.put("taskList", taskList);
 		map.put("problemList", problemList);
 		return map;
 	}

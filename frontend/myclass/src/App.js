@@ -23,6 +23,7 @@ import TeacherSchedule from "./components/teacher/schedule/teacherschedule";
 import Problems from "./components/teacher/problems/problems";
 import ProblemForm from "./components/teacher/problems/problemform";
 import EditClassForm from "./components/teacher/myclassroom/editclassform";
+import StuProblemForm from "./components/student/myclassroom/problemform";
 
 function App() {
   return (
@@ -35,9 +36,9 @@ function App() {
           <Route path="joinform" element={<Joinform />} />
           <Route path="stu" element={<Studentlayout />}>
             <Route path="problem" element={<Problem />} />
-            <Route path="myclassroom" element={<Myclassroom />}>
-              <Route path="room/:roomNum" element={<Room />} />
-            </Route>
+            <Route path="myclassroom" element={<Myclassroom />} />
+            <Route path="room/:roomNum" element={<Room />} />
+            <Route path="problemform/:problemId" element={<StuProblemForm />} />
             <Route path="schedule" element={<Schedule />} />
             <Route path="avatar" element={<Avatar />} />
           </Route>
@@ -47,7 +48,7 @@ function App() {
             <Route path="myclassroom" element={<Teacherclassroom />} />
             <Route path="room/:roomNum" element={<TeacherRoom />} />
             <Route path="schedule" element={<TeacherSchedule />} />
-            <Route path="problems" element={<Problems />}/>
+            <Route path="problems" element={<Problems />} />
             <Route path="problemform" element={<ProblemForm />} />
           </Route>
         </Routes>

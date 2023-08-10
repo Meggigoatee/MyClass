@@ -9,5 +9,9 @@ import java.util.List;
 public interface ProblemsRepository extends JpaRepository<Problems, Integer>{
 	
 	List<Problems> findByClassId(int classId);
+	
+	List<Problems> findByTeacherId(int teacherId);
+	
+	List<Problems> findByProblemId(int problemId);
 
 }
